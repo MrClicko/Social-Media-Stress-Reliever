@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Social Media Stress Reliever FF - Einstellungen</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Social Media Stress Reliever FF</h1>
+      <p>Safety-First: Die Erweiterung sendet nie automatisch. Sie fügt nur einen Entwurf ins Antwortfeld ein.</p>
+
+      <label for="provider">LLM-Provider</label>
+      <select id="provider" disabled>
+        <option value="openai">OpenAI (ChatGPT)</option>
+      </select>
+
+      <label for="model">Modell</label>
+      <input id="model" type="text" placeholder="z. B. gpt-4o-mini" />
+
+      <label for="apiKey">OpenAI API-Key</label>
+      <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off" />
+
+      <label for="maxThreadPosts">Max. Beiträge pro Thread</label>
+      <input id="maxThreadPosts" type="number" min="1" max="100" />
+
+      <label for="systemPrompt">System-Prompt (vollständig editierbar)</label>
+      <textarea id="systemPrompt" rows="16"></textarea>
+
+      <div class="actions">
+        <button id="save">Speichern</button>
+        <button id="reset" type="button">Auf Standard zurücksetzen</button>
+      </div>
+
+      <p id="status" role="status"></p>
+    </main>
+
+    <script src="../src/defaults.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

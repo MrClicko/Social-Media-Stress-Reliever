@@ -1,0 +1,49 @@
+{
+  "manifest_version": 2,
+  "name": "Social Media Stress Reliever FF",
+  "version": "1.0.0",
+  "description": "Analysiert Social-Media-Beiträge und erstellt moderierende Antwortentwürfe mit OpenAI.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "https://api.openai.com/*"
+  ],
+  "browser_action": {
+    "default_title": "Social Media Stress Reliever FF",
+    "default_popup": "popup/popup.html"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true,
+    "browser_style": true
+  },
+  "background": {
+    "scripts": [
+      "src/defaults.js",
+      "src/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*",
+        "*://*.x.com/*",
+        "*://*.twitter.com/*",
+        "*://*.bsky.app/*",
+        "*://*.mastodon.social/*",
+        "*://*/*"
+      ],
+      "js": [
+        "src/defaults.js",
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "social-media-stress-reliever-ff@example.com"
+    }
+  }
+}
