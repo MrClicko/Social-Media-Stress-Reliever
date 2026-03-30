@@ -2,6 +2,13 @@
 
 Native Firefox-Erweiterung, die Beiträge/Threads auf Social-Media-Plattformen ausliest, über ein LLM analysieren lässt und einen Antwortentwurf in das Antwortfeld einfügt (ohne Auto-Senden).
 
+## Supported UI languages
+
+- Deutsch
+- English
+
+The extension UI language can be configured in the options page (`uiLanguage`) and is stored in `storage.local`.
+
 ## Unterstützte Plattformen (Ziel)
 
 - Facebook
