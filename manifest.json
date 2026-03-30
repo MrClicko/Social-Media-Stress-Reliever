@@ -50,7 +50,9 @@
     "gecko": {
       "id": "social-media-stress-reliever-ff@example.com",
       "data_collection_permissions": {
-        "required": false
+        "required": [
+          "none"
+        ]
       }
     }
   }
