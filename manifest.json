@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Social Media Stress Reliever FF",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Analysiert Social-Media-Beiträge und erstellt moderierende Antwortentwürfe mit mehreren LLM-Anbietern.",
   "permissions": [
     "storage",
@@ -46,9 +46,12 @@
       "run_at": "document_idle"
     }
   ],
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
-      "id": "social-media-stress-reliever-ff@example.com"
+      "id": "social-media-stress-reliever-ff@example.com",
+      "data_collection_permissions": {
+        "required": false
+      }
     }
   }
 }

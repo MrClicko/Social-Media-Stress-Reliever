@@ -13,11 +13,22 @@ function formatDate(isoString) {
   return date.toLocaleString();
 }
 
+function createMetaLine(label, valueNode) {
+  const line = document.createElement("div");
+  const strong = document.createElement("strong");
+  strong.textContent = `${label}: `;
+  line.appendChild(strong);
+  line.appendChild(valueNode);
+  return line;
+}
+
 function renderLogs(logs) {
   listNode.innerHTML = "";
 
   if (!logs.length) {
-    listNode.innerHTML = "<p>Noch keine Einträge vorhanden.</p>";
+    const empty = document.createElement("p");
+    empty.textContent = "Noch keine Einträge vorhanden.";
+    listNode.appendChild(empty);
     return;
   }
 
@@ -27,15 +38,23 @@ function renderLogs(logs) {
 
     const meta = document.createElement("div");
     meta.className = "meta";
-    meta.innerHTML = `
-      <div><strong>Datum:</strong> ${formatDate(log.generatedAt)}</div>
-      <div><strong>URL:</strong> <a href="${log.url}" target="_blank" rel="noopener noreferrer">${log.url}</a></div>
-      <div><strong>LLM:</strong> ${log.provider} / ${log.model}</div>
-    `;
+
+    const dateText = document.createTextNode(formatDate(log.generatedAt || new Date().toISOString()));
+    meta.appendChild(createMetaLine("Datum", dateText));
+
+    const urlLink = document.createElement("a");
+    urlLink.href = log.url || "";
+    urlLink.target = "_blank";
+    urlLink.rel = "noopener noreferrer";
+    urlLink.textContent = log.url || "(keine URL)";
+    meta.appendChild(createMetaLine("URL", urlLink));
+
+    const llmText = document.createTextNode(`${log.provider || "-"} / ${log.model || "-"}`);
+    meta.appendChild(createMetaLine("LLM", llmText));
 
     const response = document.createElement("pre");
     response.className = "response";
-    response.textContent = log.generatedText;
+    response.textContent = log.generatedText || "";
 
     wrapper.appendChild(meta);
     wrapper.appendChild(response);
