@@ -47,6 +47,7 @@ textarea {
   margin-top: 14px;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 button {
@@ -65,4 +66,14 @@ button[type='button'] {
 #status {
   margin-top: 12px;
   min-height: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+.about {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #57606a;
 }

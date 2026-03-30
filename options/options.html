@@ -12,15 +12,24 @@
       <p>Safety-First: Die Erweiterung sendet nie automatisch. Sie fügt nur einen Entwurf ins Antwortfeld ein.</p>
 
       <label for="provider">LLM-Provider</label>
-      <select id="provider" disabled>
-        <option value="openai">OpenAI (ChatGPT)</option>
+      <select id="provider">
+        <option value="openai">OpenAI</option>
+        <option value="anthropic">Anthropic</option>
+        <option value="google">Google Cloud</option>
+        <option value="mistral">Mistral AI</option>
+        <option value="local_openai">Lokales LLM (OpenAI-kompatibel)</option>
       </select>
 
-      <label for="model">Modell</label>
-      <input id="model" type="text" placeholder="z. B. gpt-4o-mini" />
+      <label id="credentialLabel" for="apiKey">API-Schlüssel</label>
+      <input id="apiKey" type="password" placeholder="API-Key" autocomplete="off" />
 
-      <label for="apiKey">OpenAI API-Key</label>
-      <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off" />
+      <div id="endpointGroup" class="hidden">
+        <label for="endpoint">Lokale Netzwerkadresse</label>
+        <input id="endpoint" type="text" placeholder="http://127.0.0.1:1234" />
+      </div>
+
+      <label for="model">Modell</label>
+      <input id="model" type="text" />
 
       <label for="maxThreadPosts">Max. Beiträge pro Thread</label>
       <input id="maxThreadPosts" type="number" min="1" max="100" />
@@ -31,9 +40,11 @@
       <div class="actions">
         <button id="save">Speichern</button>
         <button id="reset" type="button">Auf Standard zurücksetzen</button>
+        <button id="openLogs" type="button">Protokoll öffnen</button>
       </div>
 
       <p id="status" role="status"></p>
+      <p class="about">Per Vibe-Coding hergestellt durch Matthias Schüssler, matthias@clickomania.ch</p>
     </main>
 
     <script src="../src/defaults.js"></script>

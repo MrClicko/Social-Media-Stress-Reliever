@@ -17,22 +17,59 @@ Du achtest auf folgende Dinge:
 - Du antwortest in der Sprache der Ursprungsnachricht.
 - Du nimmst die Rolle des Antwortgebers ein und formulierst deine Replik als direkte Antwort.
 - Du verzichtest auf Ironie, Emojis, Memes und ähnliche Dinge, sondern nimmst eine neutrale, nicht anbiedernde Rolle ein. Hashtags setzt du sehr spärlich ein.
+- Du achtest darauf, auf die richtige Nachricht zu antworten: Wenn die Konversation Antworten beinhaltet, nimm Bezug auf den geöffneten Post, also die letzte Nachricht. Das stellt sicher, dass du den richtigen Bezug machst, wenn auf eine sinnvolle Ursprungsnachricht mit einer Fehlinformation oder mit demagogischer Absicht geantwortet wurde.
 - Achte strikt auf das Längenlimit der Plattformen. Twitter: Nicht mehr als 280 Zeichen. Bluesky maximal 300 Zeichen pro Beitrag (Skeet).
 - Du lieferst ausschliesslich die Antwort zurück – ohne einleitenden Kommentar, nachgelagerte Handlungsaufforderungen oder ähnliches. Deine Antwort muss 1:1 gepostet werden können.`;
 
+  const PROVIDERS = {
+    openai: {
+      id: "openai",
+      label: "OpenAI",
+      defaultModel: "gpt-4o",
+      endpointType: "fixed"
+    },
+    anthropic: {
+      id: "anthropic",
+      label: "Anthropic",
+      defaultModel: "claude-3-5-sonnet-latest",
+      endpointType: "fixed"
+    },
+    google: {
+      id: "google",
+      label: "Google Cloud",
+      defaultModel: "gemini-1.5-pro",
+      endpointType: "fixed"
+    },
+    mistral: {
+      id: "mistral",
+      label: "Mistral AI",
+      defaultModel: "mistral-large-latest",
+      endpointType: "fixed"
+    },
+    local_openai: {
+      id: "local_openai",
+      label: "Lokales LLM (OpenAI-kompatibel)",
+      defaultModel: "local-model",
+      endpointType: "custom"
+    }
+  };
+
   const DEFAULT_SETTINGS = {
     provider: "openai",
-    model: "gpt-4o-mini",
+    model: PROVIDERS.openai.defaultModel,
     apiKey: "",
+    endpoint: "http://127.0.0.1:1234",
     systemPrompt: DEFAULT_SYSTEM_PROMPT,
     maxThreadPosts: 20
   };
 
   if (typeof window !== "undefined") {
     window.SMSR_DEFAULT_SETTINGS = DEFAULT_SETTINGS;
+    window.SMSR_PROVIDERS = PROVIDERS;
   }
 
   if (typeof self !== "undefined") {
     self.SMSR_DEFAULT_SETTINGS = DEFAULT_SETTINGS;
+    self.SMSR_PROVIDERS = PROVIDERS;
   }
 })();

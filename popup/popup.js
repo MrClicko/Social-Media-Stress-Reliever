@@ -1,6 +1,7 @@
 const runButton = document.getElementById("runButton");
 const statusNode = document.getElementById("status");
 const openOptionsLink = document.getElementById("openOptions");
+const openLogsLink = document.getElementById("openLogs");
 
 function setStatus(message, isError = false) {
   statusNode.textContent = message;
@@ -39,4 +40,9 @@ runButton.addEventListener("click", async () => {
 openOptionsLink.addEventListener("click", (event) => {
   event.preventDefault();
   browser.runtime.openOptionsPage();
+});
+
+openLogsLink.addEventListener("click", (event) => {
+  event.preventDefault();
+  browser.tabs.create({ url: browser.runtime.getURL("logs/logs.html") });
 });

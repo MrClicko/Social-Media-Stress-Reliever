@@ -63,19 +63,18 @@
       }
     }
 
-    return snippets
-      .slice(0, maxPosts)
-      .map((text, index) => `Beitrag ${index + 1}: ${text}`)
-      .join("\n\n");
+    const bounded = snippets.slice(0, maxPosts);
+    const focusText = bounded[bounded.length - 1] || "";
+
+    return [
+      bounded.map((text, index) => `Beitrag ${index + 1}: ${text}`).join("\n\n"),
+      "",
+      `Fokusbeitrag (letzte sichtbare Nachricht): ${focusText}`
+    ].join("\n");
   }
 
   function focusAndInsertText(text) {
-    const candidates = [
-      "div[role='textbox']",
-      "div.public-DraftEditor-content",
-      "textarea",
-      "div[contenteditable='true']"
-    ];
+    const candidates = ["div[role='textbox']", "div.public-DraftEditor-content", "textarea", "div[contenteditable='true']"];
 
     let target = null;
     for (const selector of candidates) {
@@ -148,12 +147,12 @@
       type: "smsr:generateReply",
       payload: {
         platform: platformInfo.platform,
-        threadText
+        threadText,
+        postUrl: location.href
       }
     });
 
     clickReplyIfPossible(platformInfo.platform);
-
     await new Promise((resolve) => setTimeout(resolve, 250));
 
     const text = platformInfo.limit ? reply.slice(0, platformInfo.limit) : reply;

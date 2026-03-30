@@ -45,6 +45,12 @@ button:disabled {
   white-space: pre-wrap;
 }
 
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 a {
   font-size: 12px;
 }
