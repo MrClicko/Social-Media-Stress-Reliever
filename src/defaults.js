@@ -57,8 +57,8 @@ Pay attention to the following:
     model: PROVIDERS.openai.defaultModel,
     apiKey: "",
     endpoint: "http://127.0.0.1:1234",
-    systemPrompt: DEFAULT_SYSTEM_PROMPTS.de,
-    uiLanguage: "de",
+    systemPrompt: DEFAULT_SYSTEM_PROMPTS.en,
+    uiLanguage: "en",
     maxThreadPosts: 20
   };
 
